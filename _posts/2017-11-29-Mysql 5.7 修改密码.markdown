@@ -1,0 +1,20 @@
+---
+layout: post
+title: Mysql 5.7 root 密码
+date: 2017-11-29 15:32:24.000000000 +09:00
+---
+
+### Mysql 5.7 
+
+#### Access denied for user 'root@localhost' (using password:NO)
+
+#### 解决步骤
+
+ - 修改my.cnf( 可能在/etc/my.cnf   可能 /usr/local/etc/my.cnf )文件，在[mysqld] 标签下添加 skip-grant-tables
+ - 重启mysql
+ - 现在无需密码登录 直接在命令行输入 mysql 就能进入
+ - 修改密码
+    - update mysql.user set authentication_string=password('123qwe') where user='root' and Host = ‘localhost’;
+    - flush privileges;
+- 把配置文件中的skip-grant-tables删除
+- 重启mysql
